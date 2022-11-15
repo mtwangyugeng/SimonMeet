@@ -1,16 +1,20 @@
 <script>
     import Content from "./views/Content.svelte";
     import TopBar from "./TopBar.svelte";
+    import ThemeProvider from "./ThemeProvider.svelte";
 </script>
-<section>
-    <span class=TopBar>
-        <TopBar />
-    </span>
-    
-    <span class=Content>
-        <Content />
-    </span>
-</section>
+
+<ThemeProvider>
+    <section>
+        <span class=TopBar>
+            <TopBar />
+        </span>
+        
+        <span class=Content>
+            <Content />
+        </span>
+    </section>
+</ThemeProvider>
 
 
 <style>

@@ -1,14 +1,15 @@
+<script>
+    import FeatureIntro from "./FeatureIntro.svelte";
+    import ToDo from "./ToDo.svelte";
+
+</script>
 <section>
     <div class=ToDo>
-        <slot name=todo>
-            What to do;
-        </slot>
+        <ToDo />
     </div>  
 
     <div class=FeatureIntro>
-        <slot name=featureintro>
-            Featuer intro
-        </slot>
+        <FeatureIntro />
     </div>
 </section>
 
@@ -19,7 +20,8 @@
         background-color: lightblue;
         width: 100%;
         height: 100%;
-        display: flex;   
+        display: flex;
+    
     }
 
 

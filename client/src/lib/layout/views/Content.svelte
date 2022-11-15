@@ -9,7 +9,7 @@
     {#if $hmsIsConnected}
         <MeetingPage />
     {:else}
-        <JoinRoomForm />
+        <LandingPage />
     {/if}
 </section>
 
