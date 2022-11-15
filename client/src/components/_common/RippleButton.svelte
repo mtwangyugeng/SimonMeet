@@ -12,10 +12,11 @@
 
     export let type = "button";
     export let classes = "RippleButton";
+    export let height="auto", width="auto";
 </script>
 
 
-<button class={classes} on:click={handleRipple} on:click type={type}>
+<button class={classes} on:click={handleRipple} on:click type={type} style={`height: ${height}; width: ${width}`}>
     <div class=Ripple class:RippleActive={isRippleActive} style={`left:${rX}px;top:${rY}px;`}/>
     <slot />
 </button>

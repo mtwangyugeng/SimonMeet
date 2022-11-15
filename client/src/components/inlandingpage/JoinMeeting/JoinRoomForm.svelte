@@ -16,12 +16,17 @@
   </script>
   
   <form on:submit|preventDefault={join}>
-      <h2>Join a room.</h2>
+        <span class=Name>
           <InputWithAnimatedPlaceHolder bind:value={name} name="name" placeholder="What's your name?" icon={NameTagIcon}/>
+        </span>
+        <span class=Token>
           <InputWithAnimatedPlaceHolder bind:value={token} name="token" placeholder="What is the token for your room?" icon={MeetingRoomIcon}/>
-        <RippleButton type="submit" classes={(name==="" || token==="") ? "btn-disabled" : "btn-primary"}>
-            Join
-        </RippleButton>
+        </span>
+        <span class=Submit>
+            <RippleButton type="submit" classes={(name==="" || token==="") ? "btn-disabled" : "btn-primary"} height="60px" width="60px">
+                Join
+            </RippleButton>
+        </span>
   </form>
   
   <style>
@@ -33,9 +38,27 @@
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         border-radius: 8px;
 
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-areas: 
+        'name name name name name submit'
+        'token token token token token submit'
+        ;
         gap: 10px;
+      }
+
+      .Name {
+        grid-area: name;
+      }
+
+      .Token {
+        grid-area: token;
+      }
+
+      .Submit {
+        grid-area: submit;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
 
   </style>
