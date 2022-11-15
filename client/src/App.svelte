@@ -1,15 +1,9 @@
 <script>
     import Main from "./lib/layout/Main.svelte";
-    import TopBar from "./lib/layout/TopBar.svelte";
-
 </script>
 
 <main>
-  <Main>
-    <span slot=topbar>
-      <TopBar />
-    </span>
-  </Main>
+  <Main />
 </main>
 
 <style>

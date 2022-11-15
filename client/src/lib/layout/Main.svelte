@@ -1,19 +1,14 @@
 <script>
-
+    import Content from "./views/Content.svelte";
+    import TopBar from "./TopBar.svelte";
 </script>
-
-
 <section>
     <span class=TopBar>
-        <slot name=topbar>
-            Top Bar
-        </slot>
+        <TopBar />
     </span>
     
     <span class=Content>
-        <slot name=content>
-            Views
-        </slot>
+        <Content />
     </span>
 </section>
 
@@ -33,6 +28,7 @@
     }
 
     .Content {
+        overflow: hidden;
         background-color: lightgreen;
         flex: 1;
     }
