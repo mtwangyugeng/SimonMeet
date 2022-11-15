@@ -2,6 +2,28 @@
 # yarn lockfile v1
 
 
+"@100mslive/hms-video-store@^0.7.1":
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/@100mslive/hms-video-store/-/hms-video-store-0.7.1.tgz#d91bb812f2e51b0d8bc5fd05c6a7b6380f03ae47"
+  integrity sha512-JncUVCAzfLinA5jmtGzUKl6WvFMUsEm3F5+oRzdrgT4DN044IZQREuoP7WsBrW725P0t5HjFtcQtugDT1yDRDw==
+  dependencies:
+    "@100mslive/hms-video" "0.6.1"
+    eventemitter2 "^6.4.7"
+    immer "^9.0.6"
+    reselect "4.0.0"
+    zustand "3.5.7"
+
+"@100mslive/hms-video@0.6.1":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@100mslive/hms-video/-/hms-video-0.6.1.tgz#3559f0795dc1cc68b552d3d4444b639d959167e4"
+  integrity sha512-jMA8k4ePW5kmPK7YMkFmt1Uy9lupD6wBmtrkdU6G9vGyPQ+WzDNHwmqPBbgMbepGhdTsVKilygnDQSFLR+R8JQ==
+  dependencies:
+    eventemitter2 "^6.4.7"
+    sdp-transform "^2.14.1"
+    ua-parser-js "^1.0.1"
+    uuid "^8.3.2"
+    webrtc-adapter "^8.0.0"
+
 "@esbuild/android-arm@0.15.13":
   version "0.15.13"
   resolved "https://registry.yarnpkg.com/@esbuild/android-arm/-/android-arm-0.15.13.tgz#ce11237a13ee76d5eae3908e47ba4ddd380af86a"
@@ -163,6 +185,11 @@ esbuild@^0.15.9:
     esbuild-windows-64 "0.15.13"
     esbuild-windows-arm64 "0.15.13"
 
+eventemitter2@^6.4.7:
+  version "6.4.9"
+  resolved "https://registry.yarnpkg.com/eventemitter2/-/eventemitter2-6.4.9.tgz#41f2750781b4230ed58827bc119d293471ecb125"
+  integrity sha512-JEPTiaOt9f04oa6NOkc4aH+nVp5I3wEjpHbIPqfgCdD5v5bUzy7xQqwcVO2aDQgOWhI28da57HksMrzK9HlRxg==
+
 fsevents@~2.3.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.3.2.tgz#8a526f78b8fdf4623b709e0b975c52c24c02fd1a"
@@ -179,6 +206,11 @@ has@^1.0.3:
   integrity sha512-f2dvO0VU6Oej7RkWJGrehjbzMAjFp5/VKPp5tTpWIV4JHHZK1/BxbFRtf/siA2SWTe09caDmVtYYzWEIbBS4zw==
   dependencies:
     function-bind "^1.1.1"
+
+immer@^9.0.6:
+  version "9.0.16"
+  resolved "https://registry.yarnpkg.com/immer/-/immer-9.0.16.tgz#8e7caab80118c2b54b37ad43e05758cdefad0198"
+  integrity sha512-qenGE7CstVm1NrHQbMh8YaSzTZTFNP3zPqr3YU0S0UY441j4bJTg4A2Hh5KAhwgaiU6ZZ1Ar6y/2f4TblnMReQ==
 
 is-core-module@^2.9.0:
   version "2.11.0"
@@ -228,6 +260,11 @@ postcss@^8.4.18:
     picocolors "^1.0.0"
     source-map-js "^1.0.2"
 
+reselect@4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/reselect/-/reselect-4.0.0.tgz#f2529830e5d3d0e021408b246a206ef4ea4437f7"
+  integrity sha512-qUgANli03jjAyGlnbYVAV5vvnOmJnODyABz51RdBN7M4WaVu8mecZWgyQNkG8Yqe3KRGRt0l4K4B3XVEULC4CA==
+
 resolve@^1.22.1:
   version "1.22.1"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.22.1.tgz#27cb2ebb53f91abb49470a928bba7558066ac177"
@@ -243,6 +280,16 @@ rollup@^2.79.1:
   integrity sha512-uKxbd0IhMZOhjAiD5oAFp7BqvkA4Dv47qpOCtaNvng4HBwdbWtdOh8f5nZNuk2rp51PMGk3bzfWu5oayNEuYnw==
   optionalDependencies:
     fsevents "~2.3.2"
+
+sdp-transform@^2.14.1:
+  version "2.14.1"
+  resolved "https://registry.yarnpkg.com/sdp-transform/-/sdp-transform-2.14.1.tgz#2bb443583d478dee217df4caa284c46b870d5827"
+  integrity sha512-RjZyX3nVwJyCuTo5tGPx+PZWkDMCg7oOLpSlhjDdZfwUoNqG1mM8nyj31IGHyaPWXhjbP7cdK3qZ2bmkJ1GzRw==
+
+sdp@^3.0.2:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/sdp/-/sdp-3.0.3.tgz#669958d54663ea9f4a46cc66518c9d980c52c61e"
+  integrity sha512-8EkfckS+XZQaPLyChu4ey7PghrdcraCVNpJe2Gfdi2ON1ylQ7OasuKX+b37R9slnRChwIAiQgt+oj8xXGD8x+A==
 
 source-map-js@^1.0.2:
   version "1.0.2"
@@ -269,6 +316,16 @@ svelte@^3.52.0:
   resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.53.1.tgz#db9d7df7a8f570e8e22547444c149208b1914442"
   integrity sha512-Q4/hHkktZogGhN5iqxqSi9sjEVoe/NbIxX4hXEHoasTxj+TxEQVAq66LnDMdAZxjmsodkoI5F3slqsS68U7FNw==
 
+ua-parser-js@^1.0.1:
+  version "1.0.32"
+  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-1.0.32.tgz#786bf17df97de159d5b1c9d5e8e9e89806f8a030"
+  integrity sha512-dXVsz3M4j+5tTiovFVyVqssXBu5HM47//YSOeZ9fQkdDKkfzv2v3PP1jmH6FUyPW+yCSn7aBVK1fGGKNhowdDA==
+
+uuid@^8.3.2:
+  version "8.3.2"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
+  integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
+
 vite@^3.2.3:
   version "3.2.3"
   resolved "https://registry.yarnpkg.com/vite/-/vite-3.2.3.tgz#7a68d9ef73eff7ee6dc0718ad3507adfc86944a7"
@@ -280,3 +337,15 @@ vite@^3.2.3:
     rollup "^2.79.1"
   optionalDependencies:
     fsevents "~2.3.2"
+
+webrtc-adapter@^8.0.0:
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/webrtc-adapter/-/webrtc-adapter-8.2.0.tgz#566220c95d707017bbefbb555d6e2467dd1b691e"
+  integrity sha512-umxCMgedPAVq4Pe/jl3xmelLXLn4XZWFEMR5Iipb5wJ+k1xMX0yC4ZY9CueZUU1MjapFxai1tFGE7R/kotH6Ww==
+  dependencies:
+    sdp "^3.0.2"
+
+zustand@3.5.7:
+  version "3.5.7"
+  resolved "https://registry.yarnpkg.com/zustand/-/zustand-3.5.7.tgz#add5e8d0ba031ce6e0ddf9cb76ef15306efb665f"
+  integrity sha512-DlVFXJavIHyXTOGz6dB+8QHZsPyJcGJSEBtlp2Ivmd5SwtlCnhPo3L8LB6YRfAOJC2PbqzgoD8NMjk+y+vIF0g==
