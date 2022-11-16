@@ -2,6 +2,7 @@
     import { hmsActions } from "$src/apis/_hms";
     import InputWithAnimatedPlaceHolder from "$src/components/_common/InputWithAnimatedPlaceHolder.svelte";
     import RippleButton from "$src/components/_common/RippleButton.svelte";
+    import { message } from "$src/stores/Messages";
     import LoadingIcon from "./LoadingIcon.svelte";
     import MeetingRoomIcon from "./MeetingRoomIcon.svelte";
     import NameTagIcon from "./NameTagIcon.svelte";
@@ -16,8 +17,10 @@
         try {
             await hmsActions.join({ userName: name, authToken: token, rememberDeviceSelection: true });
         }catch (e) {
-
+            message.set({type:"error", message: e.message});
         }
+
+        message.set({type:"none", message: ""});
         isLoading = false;
     }
 

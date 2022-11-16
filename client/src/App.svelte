@@ -1,9 +1,11 @@
 <script>
     import Main from "./lib/layout/Main.svelte";
+    import DropinMessage from "./lib/_Dropins/DropinMessage.svelte";
 </script>
 
 <main>
   <Main />
+  <DropinMessage/>
 </main>
 
 <style>
