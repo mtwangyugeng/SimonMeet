@@ -7,7 +7,7 @@
     function copyShareLink() {
       const url = `${window.location.origin}#&token=${$tokenStore}`;
       navigator.clipboard.writeText(url).then(function() {
-        message.set({type: "info", message:'Copied link to clip board '});
+        message.set({type: "good", message:'Copied link to clip board '});
       }, function(err) {
         message.set({type: "error", message:'failed ot copy link to clip board '+ err.message});
       });
