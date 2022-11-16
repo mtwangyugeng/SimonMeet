@@ -23,7 +23,7 @@ import { onDestroy } from "svelte";
 </script>
 
 <span>
-    <input class:IconedInput={icon!==null} on:input={handleInput} on:focus={()=>isFocused = true} on:blur={()=>isFocused = false} type={type} name={name}/>
+    <input class:IconedInput={icon!==null} value={value} on:input={handleInput} on:focus={()=>isFocused = true} on:blur={()=>isFocused = false} type={type} name={name}/>
     {#if icon !==null}
         <div class=Icon>
             <svelte:component this={icon} />
