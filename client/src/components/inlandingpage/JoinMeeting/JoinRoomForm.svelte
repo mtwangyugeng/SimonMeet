@@ -21,7 +21,7 @@
         try {
             tokenStore.set(token)
             await hmsActions.join({ userName: name, authToken: token, rememberDeviceSelection: true });
-            message.set({type:"info", message: "Succeefully joined the room. "});
+            message.set({type:"good", message: "Succeefully joined the room. "});
         }catch (e) {
             message.set({type:"error", message: e.message});
         }
