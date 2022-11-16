@@ -1,6 +1,5 @@
 <script>
-    import Video from "./video.svelte";
-
+    import Video from "./PeerVideo.svelte";
     export let peer;
 </script>
 
