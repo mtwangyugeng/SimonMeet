@@ -1,3 +1,7 @@
+<script>
+    import ShareLink from "$src/components/inmeetingroom/ShareLink/ShareLink.svelte";
+
+</script>
 <section>
     <span class=Logo>
         <slot name=logo>
@@ -6,9 +10,7 @@
     </span>
 
     <span class=Menu>
-        <slot name=menu>
-            Menu
-        </slot>
+        <ShareLink />
     </span>
 </section>
 

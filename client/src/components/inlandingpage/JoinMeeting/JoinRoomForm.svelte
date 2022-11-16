@@ -2,6 +2,7 @@
     import { hmsActions } from "$src/apis/_hms";
     import InputWithAnimatedPlaceHolder from "$src/components/_common/InputWithAnimatedPlaceHolder.svelte";
     import RippleButton from "$src/components/_common/RippleButton.svelte";
+    import { tokenStore } from "$src/stores/MeetingRoom";
     import { message } from "$src/stores/Messages";
     import LoadingIcon from "./LoadingIcon.svelte";
     import MeetingRoomIcon from "./MeetingRoomIcon.svelte";
@@ -9,19 +10,21 @@
 
     let name = '';
     let token = '';
-  
+
+    tokenStore.subscribe(v => token=v)
+    
+
     let isLoading = false;
 
     async function join() {
         isLoading = true;
         try {
+            tokenStore.set(token)
             await hmsActions.join({ userName: name, authToken: token, rememberDeviceSelection: true });
-            message.set({type:"none", message: ""});
+            message.set({type:"info", message: "Succeefully joined the room. "});
         }catch (e) {
             message.set({type:"error", message: e.message});
         }
-
-
         isLoading = false;
     }
 

@@ -1,12 +1,15 @@
 <script>
     import PeersDisplay from "$src/components/inmeetingroom/Peers/PeersDisplay.svelte";
     import BottomBar from "./BottomBar.svelte";
+    import TopBar from "./TopBar.svelte";
 </script>
 
-
+<div class="TopBar">
+    <TopBar />
+</div>
 <section class="conference-section">
     <h2>Conference</h2>
-
+    
     <PeersDisplay />
 
     <BottomBar />
@@ -34,5 +37,8 @@
         grid-template-columns: repeat(3, minmax(min-content, 1fr));
         place-items: center;
         grid-gap: 10px;
+    }
+    .TopBar {
+        height: 50px;
     }
 </style>

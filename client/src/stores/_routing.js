@@ -1,4 +1,4 @@
-function addRoute(storeName, theStore) {
+export function addRoute(storeName, theStore) {
     theStore.subscribe((v) => {
         if(v === "") return;
         // Get the current hash
