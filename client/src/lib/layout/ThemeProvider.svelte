@@ -20,4 +20,23 @@
         cursor: not-allowed;
         pointer-events: none;
     }
+
+    span :global(.card) {
+        border-radius: 8px;
+        background-color: white;
+    }
+
+    span :global(.card-shadow) {
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    span :global(.sub-text) {
+        color: #666;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    span :global(.normal-text) {
+        color: #000;
+        font-family: Arial, Helvetica, sans-serif;
+    }
 </style>

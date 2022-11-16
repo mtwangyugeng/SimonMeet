@@ -1,5 +1,6 @@
 <script>
     import PeersDisplay from "$src/components/inmeetingroom/Peers/PeersDisplay.svelte";
+    import DropInDeviceSettings from "$src/lib/_Dropins/DropInDeviceSettings.svelte";
     import BottomBar from "./BottomBar.svelte";
     import TopBar from "./TopBar.svelte";
 </script>
@@ -14,6 +15,8 @@
 
     <BottomBar />
 </section>
+
+<DropInDeviceSettings />
 
 <style>
     .conference-section {
@@ -32,12 +35,6 @@
         border-bottom: 1px solid #546e7a;
     }
 
-    .peers-container {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(min-content, 1fr));
-        place-items: center;
-        grid-gap: 10px;
-    }
     .TopBar {
         height: 50px;
     }

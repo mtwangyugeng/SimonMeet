@@ -30,7 +30,7 @@
 
   </script>
   
-  <form on:submit|preventDefault={join}>
+  <form on:submit|preventDefault={join} class="card card-shadow">
         <span class=Name>
           <InputWithAnimatedPlaceHolder bind:value={name} name="name" placeholder="What's your name?" icon={NameTagIcon}/>
         </span>
@@ -53,9 +53,6 @@
       form {
         width: 450px;
         padding: 20px;
-
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        border-radius: 8px;
 
         display: grid;
         grid-template-areas: 

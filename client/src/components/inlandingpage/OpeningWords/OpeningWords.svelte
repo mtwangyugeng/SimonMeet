@@ -1,8 +1,8 @@
 <section>
-    <h1>
+    <h1 class="normal-text">
         Simon made a video meeting app with 100ms.
     </h1>
-    <p>
+    <p class="sub-text">
         The frontend took most of the time and maybe I over engineered a little bit.
     </p>
 </section>
@@ -12,7 +12,6 @@
     section {
         user-select: none;
         
-        font-family: Arial, Helvetica, sans-serif;
         width: 100%;
         height: 100%;
     }
@@ -22,6 +21,5 @@
     }
     p {
         font-size: 20px;
-        color: #666;
     }
 </style>

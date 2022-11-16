@@ -3,7 +3,9 @@ import {
 	selectIsConnectedToRoom,
 	selectIsLocalAudioEnabled,
 	selectIsLocalVideoEnabled,
-	selectPeers
+	selectPeers,
+	selectDevices,
+	selectLocalMediaSettings
 } from '@100mslive/hms-video-store';
 import { hmsStore } from '$src/apis/_hms';
 
@@ -18,3 +20,6 @@ export const hmsIsConnected = hmsToSvelteStore(selectIsConnectedToRoom);
 export const hmsPeers = hmsToSvelteStore(selectPeers);
 export const hmsIsAudioEnabled = hmsToSvelteStore(selectIsLocalAudioEnabled);
 export const hmsIsVideoEnabled = hmsToSvelteStore(selectIsLocalVideoEnabled);
+
+export const hmsAllDevices = hmsToSvelteStore(selectDevices);
+export const hmsSelectedDevices = hmsToSvelteStore(selectLocalMediaSettings);
