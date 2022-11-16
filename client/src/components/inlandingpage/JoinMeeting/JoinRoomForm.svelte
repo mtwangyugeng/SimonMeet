@@ -2,15 +2,23 @@
     import { hmsActions } from "$src/apis/_hms";
     import InputWithAnimatedPlaceHolder from "$src/components/_common/InputWithAnimatedPlaceHolder.svelte";
     import RippleButton from "$src/components/_common/RippleButton.svelte";
+    import LoadingIcon from "./LoadingIcon.svelte";
     import MeetingRoomIcon from "./MeetingRoomIcon.svelte";
     import NameTagIcon from "./NameTagIcon.svelte";
 
     let name = '';
     let token = '';
   
-    function join() {
-        console.log("submit???")
-        hmsActions.join({ userName: name, authToken: token, rememberDeviceSelection: true });
+    let isLoading = false;
+
+    async function join() {
+        isLoading = true;
+        try {
+            await hmsActions.join({ userName: name, authToken: token, rememberDeviceSelection: true });
+        }catch (e) {
+
+        }
+        isLoading = false;
     }
 
   </script>
@@ -23,8 +31,12 @@
           <InputWithAnimatedPlaceHolder bind:value={token} name="token" placeholder="What is the token for your room?" icon={MeetingRoomIcon}/>
         </span>
         <span class=Submit>
-            <RippleButton type="submit" classes={(name==="" || token==="") ? "btn-disabled" : "btn-primary"} height="60px" width="60px">
-                Join
+            <RippleButton type="submit" classes={(name==="" || token==="" || isLoading) ? "btn-disabled" : "btn-primary"} height="60px" width="60px">
+                {#if isLoading}
+                    <LoadingIcon />
+                {:else}
+                    Join
+                {/if}
             </RippleButton>
         </span>
   </form>
@@ -61,4 +73,8 @@
         align-items: center;
       }
 
+      .Submit :global(svg) {
+        width: 40px;
+        height: 40px;
+      }
   </style>
