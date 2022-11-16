@@ -16,11 +16,12 @@
         isLoading = true;
         try {
             await hmsActions.join({ userName: name, authToken: token, rememberDeviceSelection: true });
+            message.set({type:"none", message: ""});
         }catch (e) {
             message.set({type:"error", message: e.message});
         }
 
-        message.set({type:"none", message: ""});
+
         isLoading = false;
     }
 
