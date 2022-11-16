@@ -5,7 +5,7 @@ export function addRoute(storeName, theStore) {
         let hash = new URL(window.location.href).hash;
         
         // Check if the store name is in the hash
-        const regexR = new RegExp(`&${storeName}=([^&]+)`, 'i');
+        const regexR = new RegExp(`(&${storeName}=)([^&]+)`, 'i');
         const match = hash.match(regexR);
 
         // If no match, append the store 
@@ -15,8 +15,8 @@ export function addRoute(storeName, theStore) {
             history.pushState({}, null, hash + `&${storeName}=` + v);
             return
         };
-
-        hash.replace(regexR, v)
+        console.log("trying to replace", regexR, v, hash)
+        hash = hash.replace(regexR, "$1" + v)
         history.pushState({}, null, hash);
     });
 
