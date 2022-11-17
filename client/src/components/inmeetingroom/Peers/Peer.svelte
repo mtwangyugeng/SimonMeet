@@ -27,6 +27,7 @@
     import {onDestroy} from "svelte";
     import { hmsStore } from "$src/apis/_hms";
     import InitialAvatar from "$src/components/_common/InitialAvatar.svelte";
+    import ConnectionQuality from './ConnectionQuality.svelte';
 
     export let peer;
 
@@ -44,6 +45,7 @@
 
     onDestroy(unsub);
     onDestroy(unsub2);
+
 </script>
 
 <div class="peer-container" style={outsideGlow + "transition: all 0.5s ease-in-out;"}>
@@ -61,6 +63,10 @@
     <div class="peer-name normal-text">
         {peer.name} {peer.isLocal ? "(You)" : ""}
     </div>
+
+    <div class="ConnectionQuality">
+        <ConnectionQuality peerId={peer.id}/>
+    </div>
 </div>
 
 <style>
@@ -72,7 +78,7 @@
         flex-direction: column;
 
         border-radius: 5px;;
-
+        position: relative;
     }
     .peer-name {
         height: 40px;
@@ -94,5 +100,14 @@
     .avatar-container{
         width: 100px;
         height: 100px;
+    }
+
+    .ConnectionQuality {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+
+        height: 27px;
+        width: 27px;
     }
 </style>
