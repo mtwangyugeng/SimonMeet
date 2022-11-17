@@ -1,3 +1,9 @@
+<script context=module>
+  const USER_KEY = "name"
+  const TOKEN_KEY = "token"
+</script>
+
+
 <script>
     import { hmsActions } from "$src/apis/_hms";
     import InputWithAnimatedPlaceHolder from "$src/components/_common/InputWithAnimatedPlaceHolder.svelte";
@@ -9,24 +15,27 @@
     import MeetingRoomIcon from "./MeetingRoomIcon.svelte";
     import NameTagIcon from "./NameTagIcon.svelte";
 
-    let name = '';
+    let name = localStorage.getItem(USER_KEY) || '';
     let token = '';
 
-    const unsub = tokenStore.subscribe(v => token=v)
+    const unsub = tokenStore.subscribe(v => token = v || localStorage.getItem(TOKEN_KEY))
     
 
     let isLoading = false;
 
     async function join() {
-        isLoading = true;
+      localStorage.setItem(USER_KEY, name);
+      localStorage.setItem(TOKEN_KEY, token);
         try {
+            isLoading = true;
             tokenStore.set(token)
             await hmsActions.join({ userName: name, authToken: token, rememberDeviceSelection: true });
             message.set({type:"good", message: "Succeefully joined the room. "});
         }catch (e) {
             message.set({type:"error", message: e.message});
+        } finally {
+          isLoading = false;
         }
-        isLoading = false;
     }
 
     onDestroy(unsub)
