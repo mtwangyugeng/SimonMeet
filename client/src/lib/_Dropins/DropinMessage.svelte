@@ -64,6 +64,7 @@
     }
 
     .Disappear {
+        opacity: 0;
         animation-fill-mode: forwards;
         animation: fadeaway 0.5s;
     }
