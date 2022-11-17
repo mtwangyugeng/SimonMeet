@@ -29,18 +29,12 @@
         height: 100%;
         
 
-        animation: falldown 400ms;
-        animation-fill-mode: forwards;
 
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
-    @keyframes falldown {
-        from {top: -100%}
-        to {top: 0%}
-    }
 
   
 </style>
