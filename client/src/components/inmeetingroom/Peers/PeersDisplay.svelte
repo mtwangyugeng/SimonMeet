@@ -16,6 +16,6 @@
         grid-template-columns: repeat(3, minmax(min-content, 1fr));
         place-items: center;
         grid-gap: 10px;
-        background-color: red;
+        background-color: rgb(223, 217, 217);
     }
 </style>
