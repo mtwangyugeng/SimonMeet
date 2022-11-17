@@ -1,12 +1,14 @@
 <script>
     import { hmsActions } from "$src/apis/_hms";
+    import { message } from "$src/stores/Messages";
     import { isLeavingRoom } from "./LeaveRoom.svelte";
 
     function leaveRoom() {
         isLeavingRoom.set(false);
         hmsActions.leave();
+        message.set({type: "info", message: "You left the room."})
     }
-
+    
     function returnToMeeting() {
         isLeavingRoom.set(false);
     }
