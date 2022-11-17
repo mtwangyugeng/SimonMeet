@@ -1,6 +1,7 @@
 <script>
     import CloseIcon from "$src/components/_common/icons/CloseIcon.svelte";
     import { message } from "$src/stores/Messages";
+    import { onDestroy } from "svelte";
 
 
     let isDisAppearing = false;
@@ -9,7 +10,7 @@
         isDisAppearing = true;
     }
 
-    message.subscribe(v => {
+    const unsub = message.subscribe(v => {
         isDisAppearing = false;
         if(v.type === "none" || v.type === "error") return;
         setTimeout(() =>{
@@ -22,6 +23,8 @@
             message.set({type: "none", message:""})
         }, 500)
     }
+
+    onDestroy(unsub);
 </script>
 
 {#if $message.type !== "none"}

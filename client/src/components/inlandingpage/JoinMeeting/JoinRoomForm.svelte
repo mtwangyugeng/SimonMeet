@@ -4,6 +4,7 @@
     import RippleButton from "$src/components/_common/RippleButton.svelte";
     import { tokenStore } from "$src/stores/MeetingRoom";
     import { message } from "$src/stores/Messages";
+    import { onDestroy } from "svelte";
     import LoadingIcon from "./LoadingIcon.svelte";
     import MeetingRoomIcon from "./MeetingRoomIcon.svelte";
     import NameTagIcon from "./NameTagIcon.svelte";
@@ -11,7 +12,7 @@
     let name = '';
     let token = '';
 
-    tokenStore.subscribe(v => token=v)
+    const unsub = tokenStore.subscribe(v => token=v)
     
 
     let isLoading = false;
@@ -28,6 +29,7 @@
         isLoading = false;
     }
 
+    onDestroy(unsub)
   </script>
   
   <form on:submit|preventDefault={join} class="card card-shadow">
