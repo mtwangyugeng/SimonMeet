@@ -1,41 +1,56 @@
 <script>
     import PeersDisplay from "$src/components/inmeetingroom/Peers/PeersDisplay.svelte";
     import DropInDeviceSettings from "$src/lib/_Dropins/DropInDeviceSettings.svelte";
+    import DropinLeaveRoom from "$src/lib/_Dropins/DropinLeaveRoom.svelte";
     import BottomBar from "./BottomBar.svelte";
     import TopBar from "./TopBar.svelte";
 </script>
 
-<div class="TopBar">
-    <TopBar />
-</div>
-<section class="conference-section">
-    <h2>Conference</h2>
-    
-    <PeersDisplay />
+<section>
+    <div class="TopBar">
+        <TopBar />
+    </div>
+    <div class="conference-section">
+        
+        <PeersDisplay />
 
-    <BottomBar />
+    
+    </div>
+    <div class="BottomBar">
+        <BottomBar />
+    </div>
 </section>
 
+
 <DropInDeviceSettings />
+<DropinLeaveRoom />
 
 <style>
+    section {
+        background-color: #fff;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
     .conference-section {
-        max-width: 960px;
-
+        /* max-width: 960px; */
+        width: 100%;
         padding: 20px 30px;
         margin: 0 auto;
-    }
+        flex:1;
+        background-color: lightblue;
 
-    .conference-section h2 {
-        text-align: center;
-        font-size: 32px;
-
-        padding-bottom: 10px;
-
-        border-bottom: 1px solid #546e7a;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .TopBar {
         height: 50px;
+    }
+    
+    .BottomBar {
+        height: 70px;
     }
 </style>

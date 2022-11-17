@@ -49,7 +49,7 @@
           <InputWithAnimatedPlaceHolder bind:value={token} name="token" placeholder="What is the token for your room?" icon={MeetingRoomIcon}/>
         </span>
         <span class=Submit>
-            <RippleButton type="submit" classes={(name==="" || token==="" || isLoading) ? "btn-disabled" : "btn-primary"} height="60px" width="60px">
+            <RippleButton type="submit" classes={(name==="" || token==="" || isLoading) ? "btn-disabled" : "btn-primary"}>
                 {#if isLoading}
                     <LoadingIcon />
                 {:else}
@@ -88,6 +88,11 @@
         align-items: center;
       }
 
+      
+      .Submit :global(button){
+        width: 60px;
+        height: 60px;
+      }
       .Submit :global(svg) {
         width: 40px;
         height: 40px;

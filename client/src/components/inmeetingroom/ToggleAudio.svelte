@@ -1,35 +1,26 @@
 <script lang="ts">
     import { hmsActions } from "$src/apis/_hms";
     import { hmsIsAudioEnabled,  } from "$src/stores/_hmsStores";
+    import MicIcon from "../_common/icons/MicIcon.svelte";
+    import MicOffIcon from "../_common/icons/MicOffIcon.svelte";
+    import RippleButton from "../_common/RippleButton.svelte";
 
     function toggleAudio() {
         hmsActions.setLocalAudioEnabled(!$hmsIsAudioEnabled);
     }
 
 </script>
-    <button class="btn-control" on:click={toggleAudio}>
-        {#if $hmsIsAudioEnabled}
-            Mute
-        {:else}
-            Unmute
-        {/if}
-    </button>
+<RippleButton classes="btn-control" on:click={toggleAudio}>
+    {#if $hmsIsAudioEnabled}
+        <span title="Turn off audio">
+            <MicIcon />
+        </span>
+    {:else}
+        <span title="Turn on audio">
+            <MicOffIcon />
+        </span>
+    {/if}
+</RippleButton>
 
 <style>
-    .btn-control {
-        width: 64px;
-        height: 64px;
-
-        background-color: #607d8b;
-
-        font-size: 12px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        text-align: center;
-        color: white;
-
-        border: 2px solid #37474f;
-        border-radius: 50%;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-    }
 </style>

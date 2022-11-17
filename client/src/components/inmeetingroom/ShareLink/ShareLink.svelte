@@ -14,7 +14,7 @@
     }
 </script>
 
-<RippleButton classes={"share-btn"} height="60px" width="60px" on:click={copyShareLink}>
+<RippleButton classes={"share-btn"} on:click={copyShareLink}>
     <ShareIcon/>
 </RippleButton>
 

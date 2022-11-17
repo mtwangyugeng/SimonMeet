@@ -5,20 +5,58 @@
 <style>
     span :global(button){
         border-radius: 7px;
-        
+        transition: all 300ms;
         font-family: Arial, Helvetica, sans-serif;
         font-weight: bold;
     }
     span :global(.btn-primary){
         color: white;
         background-color: blue;
-        transition: all 300ms;
     }
     span :global(.btn-disabled){
         color: rgb(71, 71, 71);
         background-color: rgb(216, 216, 216);
         cursor: not-allowed;
         pointer-events: none;
+    }
+
+    span :global(.btn-control){
+        background-color: rgb(255, 255, 255);
+        width: 40px;
+        height: 40px;
+        padding: 5px;
+    }
+    
+    span :global(.btn-control):hover{
+        transition: all 200ms;
+        background-color: rgb(230, 230, 230);
+    }
+
+    span :global(.btn-setting) {
+        color: rgb(71, 71, 71);
+        background-color: rgb(216, 216, 216);
+        width: 40px;
+        height: 40px;
+        
+    }
+
+    span :global(.btn-danger) {
+        color: #fff;
+        background-color: red;
+        padding: 10px;
+    }
+
+    span :global(.btn-danger):hover {
+        background-color: rgb(255, 86, 86);
+    }
+
+    span :global(.btn-lite) {
+        background-color: #fff;
+        padding: 10px;
+    }
+
+    span :global(.btn-lite):hover {
+        background-color: rgb(216, 216, 216);
     }
 
     span :global(.card) {
@@ -28,6 +66,15 @@
 
     span :global(.card-shadow) {
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    span :global(.card-dropin) {
+        position: relative;
+        padding: 15px 20px 20px 20px;
+
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
     }
 
     span :global(.sub-text) {

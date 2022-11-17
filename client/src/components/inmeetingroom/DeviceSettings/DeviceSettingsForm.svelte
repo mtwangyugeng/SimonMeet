@@ -15,7 +15,7 @@
     }
 </script>
 
-<section class="card card-shadow">
+<section class="card card-shadow card-dropin">
     <button class=CloseButton on:click={handleClose}>
         <CloseIcon />    
     </button>
@@ -43,15 +43,6 @@
 
 
 <style>
-    section {
-        position: relative;
-        padding: 15px 20px 20px 20px;
-
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-    }
-
     .CloseButton {
         position: absolute;
         top: 5px;

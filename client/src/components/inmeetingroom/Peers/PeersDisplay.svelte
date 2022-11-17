@@ -17,5 +17,7 @@
         place-items: center;
         grid-gap: 10px;
         background-color: rgb(223, 217, 217);
+
+        max-width: 960px;
     }
 </style>
