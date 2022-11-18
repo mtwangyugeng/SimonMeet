@@ -11,6 +11,7 @@ import { hmsPeers } from "$src/stores/_hmsStores";
     import { onDestroy } from "svelte";
     import { flip } from 'svelte/animate';
     import { fly } from 'svelte/transition'
+    import { handlePeerHover, handlePeerLeave, hoveringOnPeer } from "../Peers/Peer.svelte";
 
     let isOpened = true;
 
@@ -38,19 +39,24 @@ import { hmsPeers } from "$src/stores/_hmsStores";
             })
         }
     }
+
 </script>
 
 <section>
-    <button class="Activate btn-lite" on:click={() => isOpened = !isOpened}>
+    <button class="Activate btn-lite" on:click={() => isOpened = !isOpened} class:Filtering={isFiltering}>
         <div class="Expand" class:Retract={isOpened}> 
             <ExpandIcon /> 
         </div>
-        {isFiltering ? "Filtering" : "Everyone"}
+        <div class=IsFiltering>
+            {isFiltering ? "Filtering" : "Everyone"}
+        </div>
     </button>
     {#if isOpened}
         <div class="Filter card card-shadow" in:fly={{ y: -20, duration: 200 }} out:fly={{ y: -10, duration: 200 }} >
             {#each selectedPeersId as id (id)}
-                <button class={$selectedPeers[id].isSelected ? "btn-selected" : "btn-lite"} animate:flip="{{duration: 200}}" on:click={toggleSelect(id)}>
+                <button class={$selectedPeers[id].isSelected ? "btn-selected" : "btn-lite"} animate:flip="{{duration: 200}}" on:click={toggleSelect(id)}
+                    on:mouseover={handlePeerHover(id)}  on:focus={handlePeerHover(id)} on:mouseleave={handlePeerLeave}
+                >
                     <div class=Checkbox>
                         {#if $selectedPeers[id].isSelected}
                             <CheckedIcon />
@@ -67,6 +73,8 @@ import { hmsPeers } from "$src/stores/_hmsStores";
     {/if}
 </section>
 
+
+
 <style>
 
     .Activate {
@@ -74,9 +82,12 @@ import { hmsPeers } from "$src/stores/_hmsStores";
         height: 30px;
         border: 1px solid;
         display: flex;
-
-        justify-content: center;
+        padding: 0.5em;
         align-items: center;
+    }
+
+    .Filtering {
+        background-color: rgb(255, 255, 117);
     }
     section {
         position: relative;
@@ -116,6 +127,10 @@ import { hmsPeers } from "$src/stores/_hmsStores";
     .Expand :global(svg){
         height: 20px;
         width: 20px;
+    }
+
+    .IsFiltering {
+        flex: 1;
     }
     .Retract {
         transform: rotate(180deg);

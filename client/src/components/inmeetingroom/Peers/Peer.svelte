@@ -24,6 +24,20 @@
     const subAudioEnabledByPeerId = (peerId, setAudioEnabled) => hmsStore.subscribe(enabled => {
         setAudioEnabled(enabled)
     }, selectIsPeerAudioEnabled(peerId));
+
+
+
+    // hovering on peer
+    export const hoveringOnPeer = writable("")
+    export function handlePeerHover(PeerId) {
+        return () => {
+            hoveringOnPeer.set(PeerId)
+        }
+    }
+
+    export function handlePeerLeave() {
+        hoveringOnPeer.set("")
+    }
 </script>
 
 
@@ -35,6 +49,7 @@
     import ConnectionQuality from './ConnectionQuality.svelte';
     import MicOffIcon from "$src/components/_common/icons/MicOffIcon.svelte";
     import MicIcon from "$src/components/_common/icons/MicIcon.svelte";
+    import { writable } from 'svelte/store';
 
     export let peer;
 
@@ -52,11 +67,12 @@
         return `box-shadow: ${level ? `0px 0px ${24 * sigmoid(level)}px ${color}, 0px 0px ${16 * sigmoid(level)}px ${color}` : ''};`
     })(audioLevel)
 
-    onDestroy(() => {unsub(); unsub2()});
+    onDestroy(() => {unsub(); unsub2(); unsub3()});
 
 </script>
 
-<div class="peer-container" style={outsideGlow + "transition: all 0.5s ease-in-out;"}>
+
+<div class="peer-container" style={outsideGlow + "transition: all 0.5s ease-in-out;"} class:PeerHovering={peer.id === $hoveringOnPeer}>
     <div class="upper-container">
         {#if (!videoTrack?.enabled || videoTrack?.degraded)}
             <!--show avatar if video is either muted or degraded-->
@@ -146,5 +162,9 @@
         fill: white;
     }
 
+    .PeerHovering {
+        transition: all 0.1s;
+        background-color: rgb(248, 136, 71);
+    }
 
 </style>
