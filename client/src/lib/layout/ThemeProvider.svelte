@@ -64,9 +64,18 @@
         background-color: rgb(216, 216, 216);
     }
 
+    span :global(.btn-selected) {
+        background-color: rgb(107, 245, 89);
+        padding: 10px;
+    }
+
+    span :global(.btn-selected):hover {
+        background-color: rgb(0, 139, 0);
+    }
+
     span :global(.card) {
         border-radius: 8px;
-        background-color: white;
+        background-color: rgb(255, 255, 255);
     }
 
     span :global(.card-shadow) {

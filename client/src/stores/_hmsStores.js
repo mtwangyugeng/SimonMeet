@@ -5,7 +5,8 @@ import {
 	selectIsLocalVideoEnabled,
 	selectPeers,
 	selectDevices,
-	selectLocalMediaSettings
+	selectLocalMediaSettings,
+	selectHMSMessages,
 } from '@100mslive/hms-video-store';
 import { hmsStore } from '$src/apis/_hms';
 
@@ -23,3 +24,5 @@ export const hmsIsVideoEnabled = hmsToSvelteStore(selectIsLocalVideoEnabled);
 
 export const hmsAllDevices = hmsToSvelteStore(selectDevices);
 export const hmsSelectedDevices = hmsToSvelteStore(selectLocalMediaSettings);
+
+export const hmsMessages = hmsToSvelteStore(selectHMSMessages);
