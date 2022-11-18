@@ -11,7 +11,7 @@
     import { tokenStore } from "$src/stores/MeetingRoom";
     import { message } from "$src/stores/Messages";
     import { onDestroy } from "svelte";
-    import LoadingIcon from "./LoadingIcon.svelte";
+    import LoadingIcon from "../../_common/icons/LoadingIcon.svelte";
     import MeetingRoomIcon from "./MeetingRoomIcon.svelte";
     import NameTagIcon from "./NameTagIcon.svelte";
 

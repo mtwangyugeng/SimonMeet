@@ -1,5 +1,6 @@
 <script>
     import PeersDisplay from "$src/components/inmeetingroom/Peers/PeersDisplay.svelte";
+    import DropinAutoPlayError from "$src/lib/_Dropins/DropinAutoPlayError.svelte";
     import DropInDeviceSettings from "$src/lib/_Dropins/DropInDeviceSettings.svelte";
     import DropinLeaveRoom from "$src/lib/_Dropins/DropinLeaveRoom.svelte";
     import BottomBar from "./BottomBar.svelte";
@@ -24,6 +25,7 @@
 
 <DropInDeviceSettings />
 <DropinLeaveRoom />
+<DropinAutoPlayError />
 
 <style>
     section {

@@ -12,7 +12,12 @@
     span :global(.btn-primary){
         color: white;
         background-color: blue;
+        padding: 10px;
     }
+    span :global(.btn-primary):hover{
+        background-color: rgb(53, 53, 248);
+    }
+
     span :global(.btn-disabled){
         color: rgb(71, 71, 71);
         background-color: rgb(216, 216, 216);
