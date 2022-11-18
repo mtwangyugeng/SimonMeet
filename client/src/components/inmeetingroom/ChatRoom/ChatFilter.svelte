@@ -13,7 +13,7 @@ import { hmsPeers } from "$src/stores/_hmsStores";
     import { fly } from 'svelte/transition'
     import { handlePeerHover, handlePeerLeave, hoveringOnPeer } from "../Peers/Peer.svelte";
 
-    let isOpened = true;
+    let isOpened = false;
 
     let isFiltering = false;
 

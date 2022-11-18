@@ -4,13 +4,9 @@
     import DropInDeviceSettings from "$src/lib/_Dropins/DropInDeviceSettings.svelte";
     import DropinLeaveRoom from "$src/lib/_Dropins/DropinLeaveRoom.svelte";
     import BottomBar from "./BottomBar.svelte";
-    import TopBar from "./TopBar.svelte";
 </script>
 
 <section>
-    <div class="TopBar">
-        <TopBar />
-    </div>
     <div class="conference-section">
         
         <PeersDisplay />
@@ -48,9 +44,6 @@
         align-items: center;
     }
 
-    .TopBar {
-        height: 50px;
-    }
     
     .BottomBar {
         height: 70px;
