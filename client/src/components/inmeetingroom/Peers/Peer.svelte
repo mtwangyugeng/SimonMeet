@@ -3,7 +3,8 @@
         selectPeerAudioByID,
         selectDominantSpeaker,
         selectSpeakers,
-        selectCameraStreamByPeerID
+        selectCameraStreamByPeerID,
+        selectIsPeerAudioEnabled
     } from '@100mslive/hms-video-store';
 
     const subAudioLevelByPeerId = (peerId, setAudioLevel) => hmsStore.subscribe((level) => setAudioLevel(level), selectPeerAudioByID(peerId));
@@ -17,8 +18,12 @@
     const subActiveSpeaker = () => hmsStore.subscribe(activeSpeaker, selectDominantSpeaker);
 
     const subVideoTrackByPeerId = (peerId, setTrack) => hmsStore.subscribe((track) => {
-      setTrack(track);
+        setTrack(track);
     }, selectCameraStreamByPeerID(peerId));
+
+    const subAudioEnabledByPeerId = (peerId, setAudioEnabled) => hmsStore.subscribe(enabled => {
+        setAudioEnabled(enabled)
+    }, selectIsPeerAudioEnabled(peerId));
 </script>
 
 
@@ -28,14 +33,18 @@
     import { hmsStore } from "$src/apis/_hms";
     import InitialAvatar from "$src/components/_common/InitialAvatar.svelte";
     import ConnectionQuality from './ConnectionQuality.svelte';
+    import MicOffIcon from "$src/components/_common/icons/MicOffIcon.svelte";
+    import MicIcon from "$src/components/_common/icons/MicIcon.svelte";
 
     export let peer;
 
     let videoTrack;
     let audioLevel = 0;
+    let isAudioEnabled = false;
 
     const unsub = subVideoTrackByPeerId(peer.id, (track) => videoTrack = track)
     const unsub2 = subAudioLevelByPeerId(peer.id, (level) => audioLevel = level)
+    const unsub3 = subAudioEnabledByPeerId(peer.id, (enabled) => isAudioEnabled = enabled)
 
     $: outsideGlow = ((level) => {
         const sigmoid = (num) => 1 / (1 + Math.exp(-num));
@@ -43,8 +52,7 @@
         return `box-shadow: ${level ? `0px 0px ${24 * sigmoid(level)}px ${color}, 0px 0px ${16 * sigmoid(level)}px ${color}` : ''};`
     })(audioLevel)
 
-    onDestroy(unsub);
-    onDestroy(unsub2);
+    onDestroy(() => {unsub(); unsub2()});
 
 </script>
 
@@ -66,6 +74,14 @@
 
     <div class="ConnectionQuality">
         <ConnectionQuality peerId={peer.id}/>
+    </div>
+
+    <div class="MicState">
+        {#if !isAudioEnabled}
+            <MicOffIcon />
+        {:else}
+            <MicIcon />
+        {/if}
     </div>
 </div>
 
@@ -110,4 +126,18 @@
         height: 27px;
         width: 27px;
     }
+
+    .MicState {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+
+        width: 30px;
+        height: 30px;
+        background-color: rgb(247, 71, 71);
+        border-radius: 50%;
+        fill: white;
+    }
+
+
 </style>
