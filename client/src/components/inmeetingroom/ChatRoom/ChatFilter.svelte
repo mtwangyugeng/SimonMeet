@@ -4,13 +4,17 @@
 </script>
 
 <script>
-    import { hmsPeers } from "$src/stores/_hmsStores";
+    import CheckedIcon from "$src/components/_common/icons/CheckedIcon.svelte";
+import ExpandIcon from "$src/components/_common/icons/ExpandIcon.svelte";
+    import UnCheckedIcon from "$src/components/_common/icons/UnCheckedIcon.svelte";
+import { hmsPeers } from "$src/stores/_hmsStores";
     import { onDestroy } from "svelte";
     import { flip } from 'svelte/animate';
+    import { fly } from 'svelte/transition'
 
     let isOpened = true;
 
-    $: isFiltering = false
+    let isFiltering = false;
 
 
     $: selectedPeersId = Object.keys($selectedPeers);
@@ -29,6 +33,7 @@
         return () => {
             selectedPeers.update( v=> {
                 v[PeerId].isSelected = !v[PeerId].isSelected;
+                isFiltering = !(Object.values(v).reduce((prev, curr) => (prev && curr.isSelected), true));
                 return v
             })
         }
@@ -36,14 +41,26 @@
 </script>
 
 <section>
-    <button on:click={() => isOpened = !isOpened}>
+    <button class="Activate btn-lite" on:click={() => isOpened = !isOpened}>
+        <div class="Expand" class:Retract={isOpened}> 
+            <ExpandIcon /> 
+        </div>
         {isFiltering ? "Filtering" : "Everyone"}
     </button>
     {#if isOpened}
-        <div class="Filter card card-shadow" >
+        <div class="Filter card card-shadow" in:fly={{ y: -20, duration: 200 }} out:fly={{ y: -10, duration: 200 }} >
             {#each selectedPeersId as id (id)}
                 <button class={$selectedPeers[id].isSelected ? "btn-selected" : "btn-lite"} animate:flip="{{duration: 200}}" on:click={toggleSelect(id)}>
-                    {$selectedPeers[id].name} ({id})
+                    <div class=Checkbox>
+                        {#if $selectedPeers[id].isSelected}
+                            <CheckedIcon />
+                        {:else}
+                            <UnCheckedIcon />
+                        {/if}
+                    </div>
+                    <div class="Name">
+                        {$selectedPeers[id].name}
+                    </div>
                 </button>
             {/each}
         </div>
@@ -51,11 +68,66 @@
 </section>
 
 <style>
+
+    .Activate {
+        width: 90px;
+        height: 30px;
+        border: 1px solid;
+        display: flex;
+
+        justify-content: center;
+        align-items: center;
+    }
+    section {
+        position: relative;
+        font-size: 11px;
+        
+    }
+
     .Filter {
         position: absolute;
-        font-size: 14px;
         display: flex;
         flex-direction: column;
         z-index: 999;
+        width: 100%;
+
+        margin-top: 5px;
+        overflow: hidden;
+    }
+    .Filter button {
+        border-radius: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 5px;
+        
+    }
+
+    .Filter button :global(svg){
+        height: 20px;
+        width: 20px;
+    }
+
+    .Expand {
+        transition: all 0.2s;
+        height: 20px;
+        width: 20px;
+    }
+    .Expand :global(svg){
+        height: 20px;
+        width: 20px;
+    }
+    .Retract {
+        transform: rotate(180deg);
+    }
+
+    .Name {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .Checkbox {
+        width: 20px;
+        height: 20px;;
     }
 </style>

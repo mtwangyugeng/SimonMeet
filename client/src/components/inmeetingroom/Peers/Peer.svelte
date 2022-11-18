@@ -69,7 +69,7 @@
     </div>
     
     <div class="peer-name normal-text">
-        {peer.name} {peer.isLocal ? "(You)" : ""}
+        <span>{peer.name}</span> <div>{peer.isLocal ? " (You)" : ""}</div>
     </div>
 
     <div class="ConnectionQuality">
@@ -93,19 +93,26 @@
         display: flex;
         flex-direction: column;
 
+        align-items: center;
+
         border-radius: 5px;;
         position: relative;
     }
     .peer-name {
         height: 40px;
         font-size: 14px;
-        text-align: center;
 
         display: flex;
         justify-content: center;
         align-items: center;
 
         font-weight: bold;
+        gap: 5px;
+    }
+    .peer-name span {
+        max-width: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     .upper-container {
         flex: 1;
