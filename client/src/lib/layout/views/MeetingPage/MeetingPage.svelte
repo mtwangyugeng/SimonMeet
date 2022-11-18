@@ -34,14 +34,14 @@
     .conference-section {
         /* max-width: 960px; */
         width: 100%;
-        padding: 20px 30px;
         margin: 0 auto;
         flex:1;
-        background-color: lightblue;
+        background-color: rgb(208, 211, 212);
 
         display: flex;
         justify-content: center;
         align-items: center;
+        overflow: hidden;
     }
 
     

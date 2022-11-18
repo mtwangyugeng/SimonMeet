@@ -72,22 +72,17 @@
 </script>
 
 
-<div class="peer-container" style={outsideGlow + "transition: all 0.5s ease-in-out;"} class:PeerHovering={peer.id === $hoveringOnPeer}>
-    <div class="upper-container">
-        {#if (!videoTrack?.enabled || videoTrack?.degraded)}
-            <!--show avatar if video is either muted or degraded-->
-            <div class="avatar-container">
-                <InitialAvatar name={peer.name}/>
-            </div>
-        {:else}
-            <Video isLocal={peer.isLocal} peerId={peer.id} />
-        {/if}
-    </div>
-    
-    <div class="peer-name normal-text">
-        <span>{peer.name}</span> <div>{peer.isLocal ? " (You)" : ""}</div>
-    </div>
-
+<div class="video-container" style={outsideGlow + "transition: all 0.5s ease-in-out;"} class:PeerHovering={peer.id === $hoveringOnPeer}>
+    {#if (!videoTrack?.enabled || videoTrack?.degraded)}
+        <!--show avatar if video is either muted or degraded-->
+        <div class="avatar-container">
+            <InitialAvatar name={peer.name}/>
+        </div>
+    {:else}
+        
+        <Video isLocal={peer.isLocal} peerId={peer.id} />
+        
+    {/if}
     <div class="ConnectionQuality">
         <ConnectionQuality peerId={peer.id}/>
     </div>
@@ -99,22 +94,19 @@
             <MicIcon />
         {/if}
     </div>
+    <div class="peer-name normal-text">
+        <span>{peer.name}</span> <div>{peer.isLocal ? " (You)" : ""}</div>
+    </div>
 </div>
 
+
 <style>
-    .peer-container {
-        background-color: rgb(255, 255, 255);
-        width: 230px;
-        height: 270px;
-        display: flex;
-        flex-direction: column;
-
-        align-items: center;
-
-        border-radius: 5px;;
-        position: relative;
-    }
     .peer-name {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 0.25rem;
+
         height: 40px;
         font-size: 14px;
 
@@ -130,15 +122,22 @@
         overflow: hidden;
         text-overflow: ellipsis;
     }
-    .upper-container {
-        flex: 1;
+    .video-container {
+        background-color: rgb(255, 255, 255);
+        position: relative;
+        width: 100%;
+        height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
+        border-radius: 5px;
+        overflow: hidden;
     }
     .avatar-container{
-        width: 100px;
-        height: 100px;
+        max-width: 100px;
+        max-height: 100px;
+        width: 80%;
+        aspect-ratio: 1;
     }
 
     .ConnectionQuality {
