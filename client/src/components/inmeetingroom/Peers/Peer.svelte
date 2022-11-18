@@ -163,7 +163,7 @@
 
     .PeerHovering {
         transition: all 0.1s;
-        background-color: rgb(248, 136, 71);
+        filter: brightness(1.5);
     }
 
 </style>
