@@ -29,6 +29,7 @@
 
     // hovering on peer
     export const hoveringOnPeer = writable("")
+    hoveringOnPeer.subscribe(v => console.error(v))
     export function handlePeerHover(PeerId) {
         return () => {
             hoveringOnPeer.set(PeerId)
@@ -52,7 +53,6 @@
     import { writable } from 'svelte/store';
 
     export let peer;
-
     let videoTrack;
     let audioLevel = 0;
     let isAudioEnabled = false;

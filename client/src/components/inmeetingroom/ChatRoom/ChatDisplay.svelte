@@ -11,7 +11,7 @@
 
     import {flip} from 'svelte/animate'
     import { fly } from 'svelte/transition'
-    import { handlePeerHover, handlePeerLeave } from '../Peers/Peer.svelte';
+    import { handlePeerHover, handlePeerLeave, hoveringOnPeer } from '../Peers/Peer.svelte';
 
 	let chatBodyElement;
 	const scrollToBottom = (instant = false) => {
@@ -65,6 +65,7 @@
                 {#if $selectedPeers[msg.sender]?.isSelected}
                     <div class="chat-message" class:YourMsg={msg.senderName === "You"} in:fly={{ y: 20, duration: 200 }}
                         on:mouseover={handlePeerHover(msg.sender)} on:focus={handlePeerHover(msg.sender)} on:mouseleave={handlePeerLeave}
+                        class:HoveringChatSender={$hoveringOnPeer === msg.sender}
                     >
                         <p class="chat-message-message">{msg.message}</p>
                         <span class="chat-message-info"><b>{msg.senderName}</b>, {formatTime(msg.time)}</span>
@@ -227,4 +228,9 @@
         border: 0;
         outline: none;
 	}
+
+    .HoveringChatSender{
+        transition: all 0.1s;
+        background-color: rgb(248, 136, 71);
+    }
 </style>
