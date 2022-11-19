@@ -5,7 +5,7 @@
     import ShareIcon from "./ShareIcon.svelte";
 
     function copyShareLink() {
-      const url = `${window.location.origin}#&token=${$tokenStore}`;
+      const url = `${window.location.origin}${window.location.pathname}#&token=${$tokenStore}`;
       navigator.clipboard.writeText(url).then(function() {
         message.set({type: "good", message:'Copied link to clip board '});
       }, function(err) {
