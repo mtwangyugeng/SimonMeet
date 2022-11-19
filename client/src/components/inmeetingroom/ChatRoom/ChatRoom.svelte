@@ -10,8 +10,10 @@
 
 <script>
     import {fly} from "svelte/transition"
+    import { onDestroy } from "svelte";
     let unreadMessagesNumber = 0;
-    const unsub = hmsMessages.subscribe( _ => {
+    const unsub = hmsMessages.subscribe( v => {
+        if (v.length === 0) return;
         if(!$isChatOpened) unreadMessagesNumber += 1
     })
 
@@ -19,6 +21,8 @@
         isChatOpened.update(v => !v);
         unreadMessagesNumber = 0;
     }
+
+    onDestroy(unsub)
 </script>
 
 <button class="btn-control" on:click={handleClick}>
