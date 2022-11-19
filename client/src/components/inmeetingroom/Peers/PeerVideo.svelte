@@ -33,8 +33,8 @@
 
 <style>
     .peer-video {
-        width: 90%;
-        height: 90%;
+        width: 100%;
+        height: 100%;
         border-radius: 5px;
         object-fit: cover;
     }
