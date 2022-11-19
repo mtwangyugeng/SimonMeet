@@ -4,13 +4,14 @@
     import DeviceSettings from "$src/components/inmeetingroom/DeviceSettings/DeviceSettings.svelte";
     import LeaveRoom from "$src/components/inmeetingroom/LeaveRoom/LeaveRoom.svelte";
     import ShareLink from "$src/components/inmeetingroom/ShareLink/ShareLink.svelte";
+    import ShareScreen from "$src/components/inmeetingroom/ShareScreen/ShareScreen.svelte";
     import ToggleAudio from "$src/components/inmeetingroom/ToggleAudio.svelte";
     import ToggleVideo from "$src/components/inmeetingroom/ToggleVideo.svelte";
     import { fly } from 'svelte/transition'
 </script>
 <section>
     <div class=Divider>
-
+        <ShareScreen />
     </div>
     <div class=Divider>
         <ToggleAudio />
@@ -37,6 +38,10 @@
         display: flex;
         height: 100%;
         align-items: center;
+        flex-wrap: wrap;
+        padding: 10px;
+        column-gap: 20px;
+        row-gap: 10px;
     }
     .Divider {
         flex: 1;
@@ -70,5 +75,7 @@
             height: 100vh;
         }
     }
+
+
 
 </style>
