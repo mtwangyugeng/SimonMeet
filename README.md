@@ -1,5 +1,5 @@
-# Oricarino
+# Simon Meet
 
-Musicsheet sharing webapp for new orcarina plays.
+Meet app with 100ms API
 
 try it: [https://mtwangyugeng.github.io/SimonMeet/](https://mtwangyugeng.github.io/SimonMeet/)
