@@ -161,9 +161,10 @@
         fill: white;
     }
 
-    .PeerHovering {
+    .PeerHovering{
         transition: all 0.1s;
-        filter: brightness(1.5);
+        padding: 20px;
+        background-color: rgb(255, 129, 129);
     }
 
 </style>
