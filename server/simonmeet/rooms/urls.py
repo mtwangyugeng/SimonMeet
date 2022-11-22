@@ -8,5 +8,5 @@ from .views import (
 
 urlpatterns = [
     path('api', RoomApiView.as_view()),
-    path('api/<int:todo_id>/', RoomDetailApiView.as_view()),
+    path('api/<int:room_id>/', RoomDetailApiView.as_view()),
 ]
