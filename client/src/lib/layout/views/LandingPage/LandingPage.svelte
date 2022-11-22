@@ -1,25 +1,43 @@
 <script>
-    import FeatureIntro from "./FeatureIntro.svelte";
+    import DropinSignIn from "$src/lib/_Dropins/DropinSignIn.svelte";
+import FeatureIntro from "./FeatureIntro.svelte";
     import ToDo from "./ToDo.svelte";
+    import TopBar from "./TopBar.svelte";
 
 </script>
-<section>
-    <div class=ToDo>
-        <ToDo />
-    </div>  
 
-    <div class=FeatureIntro>
-        <FeatureIntro />
+<section>
+    <div class="TopBar">
+        <TopBar />
+    </div>
+
+    <div class=Content>
+        <div class=ToDo>
+            <ToDo />
+        </div>  
+
+        <div class=FeatureIntro>
+            <FeatureIntro />
+        </div>
     </div>
 </section>
 
+<DropinSignIn />
 
 
 <style>
     section {
-        background-color: lightblue;
         width: 100%;
         height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .TopBar {
+        height: 50px;
+    }
+    .Content {
+        background-color: lightblue;
+        flex: 1;
         display: flex;
     
     }

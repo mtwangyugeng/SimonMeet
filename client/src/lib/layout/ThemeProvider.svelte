@@ -56,12 +56,12 @@
     }
 
     span :global(.btn-lite) {
-        background-color: #fff;
+        /* background-color: #fff; */
         padding: 10px;
     }
 
     span :global(.btn-lite):hover {
-        background-color: rgb(216, 216, 216);
+        background-color: rgb(216, 216, 216, 0.5);
     }
 
     span :global(.btn-selected) {

@@ -21,7 +21,7 @@ class RoomApiView(APIView):
     # 2. Create
     def post(self, request, *args, **kwargs):
         '''
-        Create the Todo with given todo data
+        Create the Room with given room data
         '''
         data = {
             'task': request.data.get('task'), 
