@@ -1,15 +1,13 @@
 <script>
     import Main from "./lib/layout/Main.svelte";
     import DropinMessage from "./lib/_Dropins/DropinMessage.svelte";
-    import { message } from "./stores/Messages";
 
 </script>
 
 <main>
   <Main />
-  {#key $message.type + $message.message}
-    <DropinMessage/>
-  {/key}
+  <DropinMessage/>
+
 </main>
 
 <style>

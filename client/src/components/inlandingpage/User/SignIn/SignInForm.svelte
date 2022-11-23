@@ -28,8 +28,24 @@
 
 
 
-    function handleCreateAccount(username, password, confirmPassword) {
-        return 
+    async function handleCreateAccount(username, password, confirmPassword) {
+        let failed = false;
+        try{
+            const res = await postCreateAccount(username, password, confirmPassword);
+            if(res.status !== 200)
+                throw new Error(res.status + "");
+            else {
+                message.set({type: "good", message: "Welcome, " + username + "." });
+
+                const reader = await res.json();
+                userToken.set(reader.access)
+                
+            }
+        }catch(e) {
+            message.set({type: "error", message: "Create account error: " + e.message});
+            failed = true
+        }
+        return failed; 
     }
 
     async function handleLogIn(username, password) {

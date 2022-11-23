@@ -37,6 +37,11 @@
 					break;
 			}
 		})
+
+
+    // timeout stuff
+    let dispearingTimout = null;
+    let goneTimeOut = null;
 </script>
 
 
@@ -49,20 +54,24 @@
 
     let isDisAppearing = false;
 
+
     function handleClose() {
         isDisAppearing = true;
     }
 
     const unsub = message.subscribe(v => {
         isDisAppearing = false;
+        clearTimeout(dispearingTimout)
+        clearTimeout(goneTimeOut)
+
         if(v.type === "none" || v.type === "error" || v.type === "warn") return;
-        setTimeout(() =>{
+        dispearingTimout = setTimeout(() =>{
             isDisAppearing = true;
         }, 5000)
     })
 
     $: if(isDisAppearing) {
-        setTimeout(() =>{
+        goneTimeOut = setTimeout(() =>{
             message.set({type: "none", message:""})
         }, 500)
     }
@@ -74,6 +83,7 @@
 </script>
 
 {#if $message.type !== "none"}
+{#key $message}
 <section >
     <div class={"MessageContainer "+ $message.type} class:Disappear={isDisAppearing} >
         <div class="Message">
@@ -86,6 +96,7 @@
         </div>
     </div>
 </section>
+{/key}
 {/if}
 
 <style>
