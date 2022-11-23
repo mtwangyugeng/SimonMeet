@@ -50,21 +50,21 @@
 
     async function handleLogIn(username, password) {
         let failed = false;
-        try{
-            const res = await postLogIn(username, password);
-            if(res.status !== 200)
-                throw new Error(res.status + "");
-            else {
-                message.set({type: "good", message: "Welcome back, " + username + "." });
 
-                const reader = await res.json();
-                userToken.set(reader.access)
-                
-            }
-        }catch(e) {
-            message.set({type: "error", message: "Login error: " + e.message});
+        const res = await postLogIn(username, password);
+        if(res.status !== 200){
+            const errorJson = await res.json();
+            message.set({type: "error", message: "Login error: " + errorJson.detail});
             failed = true
         }
+        else {
+            message.set({type: "good", message: "Welcome back, " + username + "." });
+
+            const reader = await res.json();
+            userToken.set(reader.access)
+            
+        }
+        
         return failed;
     }
 
