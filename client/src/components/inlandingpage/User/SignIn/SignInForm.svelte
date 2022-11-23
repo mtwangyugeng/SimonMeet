@@ -30,21 +30,20 @@
 
     async function handleCreateAccount(username, password, confirmPassword) {
         let failed = false;
-        try{
-            const res = await postCreateAccount(username, password, confirmPassword);
-            if(res.status !== 200)
-                throw new Error(res.status + "");
-            else {
-                message.set({type: "good", message: "Welcome, " + username + "." });
 
-                const reader = await res.json();
-                userToken.set(reader.access)
-                
-            }
-        }catch(e) {
-            message.set({type: "error", message: "Create account error: " + e.message});
+        const res = await postCreateAccount(username, password, confirmPassword);
+        if(res.status !== 201){
+            const errorJson = await res.text();
+            message.set({type: "error", message: "Create account error: " + errorJson});
             failed = true
         }
+        else {
+            message.set({type: "good", message: "Welcome, " + username + "." });
+
+            const reader = await res.json();
+            userToken.set(reader.access);
+        }
+
         return failed; 
     }
 
@@ -59,10 +58,8 @@
         }
         else {
             message.set({type: "good", message: "Welcome back, " + username + "." });
-
             const reader = await res.json();
-            userToken.set(reader.access)
-            
+            userToken.set(reader.access);
         }
         
         return failed;
@@ -80,7 +77,6 @@
 
     import { isSignningIn } from "./SignIn.svelte";
     import { userToken } from "../User.svelte";
-
 
 
     let username = "";
@@ -106,10 +102,10 @@
 
         if (isCreatingAccount) {
             failed = await handleCreateAccount(username, password, confirmPassword)
+        } else {
+            failed = await handleLogIn(username, password)
         }
 
-        failed = await handleLogIn(username, password)
-        
         if (failed === false) {
             handleClose()
         }
@@ -123,7 +119,9 @@
     class="card card-dropin card-shadow"
     >
     <h1 class="normal-text">{windowTitle}</h1>
+    
     <InputWithAnimatedPlaceHolder bind:value={username} placeholder="User Name"/>
+
     <InputWithAnimatedPlaceHolder bind:value={password} placeholder="Password" type={passwordType}/>
 
     <span class=CreatAccount class:ZoomIn={isCreatingAccount}>
@@ -136,13 +134,13 @@
             Show Password
         </label>
 
-        <button class=SwitchMode on:click={() => isCreatingAccount = !isCreatingAccount}>
+        <button class=SwitchMode on:click={() => isCreatingAccount = !isCreatingAccount} type="button">
             {isCreatingAccount ? "Login" : "Create Account"}
         </button>
     </div>
 
     <span class=Submit>
-        <RippleButton type=submit classes={(username==="" || password===""|| (isCreatingAccount && confirmPassword==="") || isLoading) ? "btn-disabled" : "btn-primary"}>
+        <RippleButton type=submit classes={(username==="" || password===""|| (isCreatingAccount && (confirmPassword==="")) || isLoading) ? "btn-disabled" : "btn-primary"}>
             {#if isLoading}
                 <LoadingIcon />
             {:else}

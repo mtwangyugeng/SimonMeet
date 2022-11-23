@@ -3,7 +3,7 @@
 
 </script>
 
-<button class="CloseButton" on:click>
+<button class="CloseButton" on:click type="button">
     <CloseIcon />
 </button>
 
