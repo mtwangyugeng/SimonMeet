@@ -8,6 +8,10 @@
         transition: all 300ms;
         font-family: Arial, Helvetica, sans-serif;
         font-weight: bold;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     span :global(.btn-primary){
         color: white;

@@ -12,7 +12,9 @@
 
 <script>
     import CloseButton from "$src/components/_common/CloseButton.svelte";
+    import LoadingIcon from "$src/components/_common/icons/LoadingIcon.svelte";
 import InputWithAnimatedPlaceHolder from "$src/components/_common/InputWithAnimatedPlaceHolder.svelte";
+    import RippleButton from "$src/components/_common/RippleButton.svelte";
 
     import { isSignningIn } from "./SignIn.svelte";
 
@@ -76,6 +78,16 @@ import InputWithAnimatedPlaceHolder from "$src/components/_common/InputWithAnima
         </button>
     </div>
 
+    <span class=Submit>
+        <RippleButton type=submit classes={(username==="" || password===""|| (isCreatingAccount && confirmPassword==="") || isLoading) ? "btn-disabled" : "btn-primary"}>
+            {#if isLoading}
+                <LoadingIcon />
+            {:else}
+                {windowTitle}
+            {/if}
+        </RippleButton>
+    </span>
+
     <CloseButton on:click={handleClose}/>
 </form>
 
@@ -84,7 +96,7 @@ import InputWithAnimatedPlaceHolder from "$src/components/_common/InputWithAnima
 <style>
     form {
         width: 100%;
-        max-width: 450px;
+        max-width: 400px;
     }
     .ShowPassword {
         user-select: none;
@@ -126,7 +138,21 @@ import InputWithAnimatedPlaceHolder from "$src/components/_common/InputWithAnima
 
     .ZoomIn{
         height: 40px;
+        overflow: visible;
     }
 
- 
+    .Submit {
+        display: flex;
+        height: 45px;
+    }
+
+    .Submit :global(button){
+        width: 100%;
+
+    }
+    
+    .Submit :global(svg){
+        width: 30px;
+        height: 30px;
+    }
 </style>
