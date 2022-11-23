@@ -20,7 +20,6 @@ from auth import urls as auth_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api-auth/', include('rest_framework.urls')),
     path('rooms/', include(rooms_urls)),
     path('auth/', include(auth_urls)),
 

@@ -102,6 +102,7 @@
         animation: dropdown 0.5s;
         animation-timing-function: ease;
         animation-fill-mode: forwards;
+        z-index: 9999;
     }
 
     @keyframes dropdown {

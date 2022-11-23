@@ -1,10 +1,55 @@
 <script context=module>
-    async function postCreateAccount(username, password, confirmPassword) {
+    import { message } from "$src/stores/Messages";
+
+    const AUTH_URL = 'http://127.0.0.1:8000/auth/'
+
+    function postLogIn(username, password) {
+        return fetch(AUTH_URL + "login/", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username, password })
+        })
+    }
+
+    function postCreateAccount(username, password, password2) {
+        return fetch(AUTH_URL + "register/", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username, password, password2 })
+        })
+    }
+
+
+
+
+    function handleCreateAccount(username, password, confirmPassword) {
         return 
     }
 
-    async function postLogIn(username, password) {
-        return 
+    async function handleLogIn(username, password) {
+        let failed = false;
+        try{
+            const res = await postLogIn(username, password);
+            if(res.status !== 200)
+                throw new Error(res.status + "");
+            else {
+                message.set({type: "good", message: "Welcome back, " + username + "." });
+
+                const reader = await res.json();
+                userToken.set(reader.access)
+                
+            }
+        }catch(e) {
+            message.set({type: "error", message: "Login error: " + e.message});
+            failed = true
+        }
+        return failed;
     }
 
 </script>
@@ -13,10 +58,12 @@
 <script>
     import CloseButton from "$src/components/_common/CloseButton.svelte";
     import LoadingIcon from "$src/components/_common/icons/LoadingIcon.svelte";
-import InputWithAnimatedPlaceHolder from "$src/components/_common/InputWithAnimatedPlaceHolder.svelte";
+    import InputWithAnimatedPlaceHolder from "$src/components/_common/InputWithAnimatedPlaceHolder.svelte";
     import RippleButton from "$src/components/_common/RippleButton.svelte";
 
+
     import { isSignningIn } from "./SignIn.svelte";
+    import { userToken } from "../User.svelte";
 
 
 
@@ -39,19 +86,19 @@ import InputWithAnimatedPlaceHolder from "$src/components/_common/InputWithAnima
 
     async function handleSubmit() {
         isLoading = true;
-        let status = null;
+        let failed = null;
 
         if (isCreatingAccount) {
-            status = await postCreateAccount(username, password, confirmPassword)
+            failed = await handleCreateAccount(username, password, confirmPassword)
         }
 
-        status = await postLogIn(username, password)
-        if (status === null) {
+        failed = await handleLogIn(username, password)
+        
+        if (failed === false) {
             handleClose()
         }
 
         isLoading = false;
-        return status
     }
 </script>
 
@@ -112,7 +159,7 @@ import InputWithAnimatedPlaceHolder from "$src/components/_common/InputWithAnima
     .Options {
         display: flex;
         justify-content: space-between;
-        margin: 10px;
+        margin: 0 10px;
     }
 
     .SwitchMode {
