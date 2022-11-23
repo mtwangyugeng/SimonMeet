@@ -1,5 +1,6 @@
 <script>
-    import DropinLogOut from "$src/lib/_Dropins/DropinLogOut.svelte";
+    import DropinCreateRoom from "$src/lib/_Dropins/DropinCreateRoom.svelte";
+import DropinLogOut from "$src/lib/_Dropins/DropinLogOut.svelte";
 import DropinSignIn from "$src/lib/_Dropins/DropinSignIn.svelte";
 import FeatureIntro from "./FeatureIntro.svelte";
     import ToDo from "./ToDo.svelte";
@@ -25,6 +26,7 @@ import FeatureIntro from "./FeatureIntro.svelte";
 
 <DropinSignIn />
 <DropinLogOut />
+<DropinCreateRoom />
 
 <style>
     section {

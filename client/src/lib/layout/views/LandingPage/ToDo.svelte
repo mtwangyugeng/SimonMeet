@@ -1,5 +1,6 @@
 <script>
-    import JoinRoomForm from "$src/components/inlandingpage/JoinMeeting/JoinRoomForm.svelte";
+    import CreateRoom from "$src/components/inlandingpage/CreateRoom/CreateRoom.svelte";
+import JoinRoomForm from "$src/components/inlandingpage/JoinMeeting/JoinRoomForm.svelte";
     import OpeningWords from "$src/components/inlandingpage/OpeningWords/OpeningWords.svelte";
 
 </script>
@@ -11,6 +12,7 @@
     <div class=JoinRoomForm>
         <JoinRoomForm />
     </div>
+    <CreateRoom />
 </section>
 
 

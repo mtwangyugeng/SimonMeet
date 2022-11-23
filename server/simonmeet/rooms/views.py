@@ -4,6 +4,9 @@ from rest_framework import status
 from rest_framework import permissions
 from .models import Room
 from .serializers import RoomSerializer
+from hms.tokens import generateManagementToken, generateAppToken
+
+import requests
 
 class RoomApiView(APIView):
     # add permission to check if user is authenticated
@@ -23,15 +26,35 @@ class RoomApiView(APIView):
         '''
         Create the Room with given room data
         '''
+        template_id = '6373e770e61bbea99a48ece4'
         data = {
-            'task': request.data.get('task'), 
-            'completed': request.data.get('completed'), 
+            'name': request.data.get('name'), 
+            'description': request.data.get('description'), 
+            'template_id': template_id, 
+            'region': request.data.get('region'),
+            
             'user': request.user.id
-        }
+        } 
         serializer = RoomSerializer(data=data)
         if serializer.is_valid():
+            url = 'https://api.100ms.live/v2/rooms'
+            headers = {
+                'Authorization': 'Bearer ' + generateManagementToken(),
+                'Content-Type': 'application/json',
+            }
+            post_data = {
+                "name": data['name'],
+                "description": data['description'],
+                "template_id": data['template_id'], 
+                "region": data['region'],
+            }
+            response = requests.post(url, headers=headers, json=post_data)
+
+            if(response.status_code != 200):
+                 return Response(serializer.errors, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            
             serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(response.json(), status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
@@ -76,10 +99,12 @@ class RoomDetailApiView(APIView):
                 status=status.HTTP_400_BAD_REQUEST
             )
         data = {
-            'task': request.data.get('task'), 
-            'completed': request.data.get('completed'), 
+            'name': request.data.get('name'), 
+            'description': request.data.get('description'), 
+            'template_id': request.data.get('template_id'), 
+            'region': request.data.get('region'),
             'user': request.user.id
-        }
+        } 
         serializer = RoomSerializer(instance = todo_instance, data=data, partial = True)
         if serializer.is_valid():
             serializer.save()

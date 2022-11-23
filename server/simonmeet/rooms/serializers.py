@@ -3,4 +3,4 @@ from .models import Room
 class RoomSerializer(serializers.ModelSerializer):
     class Meta:
         model = Room
-        fields = ["task", "completed", "timestamp", "updated", "user"]
+        fields = ["name", "description", "template_id", "region"] 
