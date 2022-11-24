@@ -34,11 +34,20 @@
         width: 40px;
         height: 40px;
         padding: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     
     span :global(.btn-control):hover{
         transition: all 200ms;
         background-color: rgb(230, 230, 230);
+    }
+
+    span :global(.btn-control) :global(svg){
+        fill: black;
+        width: 30px;
+        height: 30px;
     }
 
     span :global(.btn-setting) {

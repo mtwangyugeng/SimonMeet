@@ -100,10 +100,14 @@
         isLoading = true;
         let failed = null;
 
+        try{
         if (isCreatingAccount) {
             failed = await handleCreateAccount(username, password, confirmPassword)
         } else {
             failed = await handleLogIn(username, password)
+        }
+        }catch(e){
+            message.set({type: "error", message: "Login error: " + e.message});
         }
 
         if (failed === false) {

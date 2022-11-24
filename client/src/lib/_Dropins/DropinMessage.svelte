@@ -135,6 +135,7 @@
     .MessageContainer {
         width: 100%;
         max-width: 600px;
+        max-height: 600px;
         padding: 10px;
         border-radius: 5px;
         font-family: Arial, Helvetica, sans-serif;

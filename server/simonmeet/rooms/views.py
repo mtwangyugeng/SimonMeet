@@ -4,7 +4,7 @@ from rest_framework import status
 from rest_framework import permissions
 from .models import Room
 from .serializers import RoomSerializer
-from hms.tokens import generateManagementToken, generateAppToken
+from .hms.tokens import generateManagementToken, generateAppToken
 
 import requests
 
@@ -54,7 +54,11 @@ class RoomApiView(APIView):
                  return Response(serializer.errors, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
             
             serializer.save()
-            return Response(response.json(), status=status.HTTP_201_CREATED)
+            
+            resJson = response.json()
+            apptoken = generateAppToken(resJson['id'], "django_generator", "guest")
+            
+            return Response({'room_token': apptoken}, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     

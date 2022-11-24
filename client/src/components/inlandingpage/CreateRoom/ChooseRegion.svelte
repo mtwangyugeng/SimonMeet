@@ -38,7 +38,7 @@
         {#if isOpened}
             <div class="OptionsContainer card card-shadow" in:fly={{ y: -20, duration: 200 }} out:fly={{ y: -20, duration: 200 }}>
                 {#each ALLOWED_REGION as regionOption (regionOption)}
-                    <button class="btn-lite Option" on:click={handleOptionClick(regionOption)} class:btn-selected={regionOption === region}>
+                    <button type=button class="btn-lite Option" on:click={handleOptionClick(regionOption)} class:btn-selected={regionOption === region}>
                         {regionTextTransform(regionOption)}
                     </button>
                 {/each}

@@ -1,9 +1,14 @@
 <script context=module>
-    const ROOM_URL = 'http://127.0.0.1:8000/auth/'
+    import { message } from "$src/stores/Messages";
+    import { get } from "svelte/store";
+    import { userToken } from "../User/User.svelte";
+
+    const ROOM_URL = 'http://127.0.0.1:8000/rooms/api'
     
     //CRUDs
     function postCreateRoom(name, description, region, access_token) {
-        return fetch(ROOM_URL + "login/", {
+        console.error("ACCESS_TOKEN: ", access_token)
+        return fetch(ROOM_URL, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -15,15 +20,36 @@
 
     }
 
+    async function handleCreateRoom(name, description, region) {
+        let failed = false;
+        const res = await postCreateRoom(name, description, region, get(userToken));
+        if(res.status !== 201){
+            const errorJson = await res.text();
+            message.set({type: "error", message: "Create Room error: " + errorJson});
+            failed = true
+        }
+        else {
+            const reader = await res.json();
+            tokenStore.set(reader.room_token)
+            message.set({type: "good", message: "Successfully created a room! Now you can join the room with the token we just entered for you :)"});
+        }
+
+        return failed;
+
+    }
+
 </script>
 
 <script>
     import CloseButton from "$src/components/_common/CloseButton.svelte";
     import LoadingIcon from "$src/components/_common/icons/LoadingIcon.svelte";
-import InputWithAnimatedPlaceHolder from "$src/components/_common/InputWithAnimatedPlaceHolder.svelte";
+    import InputWithAnimatedPlaceHolder from "$src/components/_common/InputWithAnimatedPlaceHolder.svelte";
     import RippleButton from "$src/components/_common/RippleButton.svelte";
+
     import ChooseRegion from "./ChooseRegion.svelte";
     import { isCreatingRoom } from "./CreateRoom.svelte";
+    import { handleJoin } from "../JoinMeeting/JoinRoomForm.svelte";
+    import { tokenStore } from "$src/stores/MeetingRoom";
 
     let name = "";
     let description = "";
@@ -31,8 +57,22 @@ import InputWithAnimatedPlaceHolder from "$src/components/_common/InputWithAnima
 
     let isLoading = false;
 
-    function handleSubmit() {
+    async function handleSubmit() {
+        isLoading = true;
+        let failed = null;
 
+        try{
+            failed = await handleCreateRoom(name, description, region)
+        } catch(e) {
+            message.set({type: "error", message: "Create Room error: " + e.message});
+        }
+        
+
+        if (failed === false) {
+            handleClose()
+        }
+
+        isLoading = false;
     }
 
     function handleClose() {

@@ -4,7 +4,7 @@ import datetime
 
 import os
 
-from ENV import *
+from .ENV import *
 
 app_access_key = APP_ACCESS_KEY
 app_secret = APP_SECRET
@@ -25,7 +25,7 @@ def generateManagementToken():
         }, key=app_secret)
 
 def generateAppToken(room_id, user_id, role):
-    expires = expires or 24 * 3600
+    expires = 24 * 3600
     now = datetime.datetime.utcnow()
     exp  = now+ datetime.timedelta(seconds=expires)
     return jwt.encode(payload={

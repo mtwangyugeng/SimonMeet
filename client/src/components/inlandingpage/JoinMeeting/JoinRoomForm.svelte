@@ -1,6 +1,18 @@
 <script context=module>
   const USER_KEY = "name"
   const TOKEN_KEY = "token"
+
+  export async function handleJoin(name, token) {
+      localStorage.setItem(USER_KEY, name);
+      localStorage.setItem(TOKEN_KEY, token);
+      try {
+          tokenStore.set(token)
+          await hmsActions.join({ userName: name, authToken: token, rememberDeviceSelection: true });
+          message.set({type:"good", message: "Succeefully joined the room. "});
+      }catch (e) {
+          message.set({type:"error", message: e.message});
+      }
+    }
 </script>
 
 
@@ -24,18 +36,11 @@
     let isLoading = false;
 
     async function join() {
-      localStorage.setItem(USER_KEY, name);
-      localStorage.setItem(TOKEN_KEY, token);
-        try {
-            isLoading = true;
-            tokenStore.set(token)
-            await hmsActions.join({ userName: name, authToken: token, rememberDeviceSelection: true });
-            message.set({type:"good", message: "Succeefully joined the room. "});
-        }catch (e) {
-            message.set({type:"error", message: e.message});
-        } finally {
-          isLoading = false;
-        }
+
+      isLoading = true;
+      await handleJoin(name, token)
+      isLoading = false;
+
     }
 
     onDestroy(unsub)
