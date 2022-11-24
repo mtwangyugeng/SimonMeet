@@ -15,18 +15,21 @@
 
     }
 
-
-    const ALLOWED_REGION = ['auto', 'us', 'in', 'eu'];
 </script>
 
 <script>
     import CloseButton from "$src/components/_common/CloseButton.svelte";
+    import LoadingIcon from "$src/components/_common/icons/LoadingIcon.svelte";
 import InputWithAnimatedPlaceHolder from "$src/components/_common/InputWithAnimatedPlaceHolder.svelte";
+    import RippleButton from "$src/components/_common/RippleButton.svelte";
+    import ChooseRegion from "./ChooseRegion.svelte";
     import { isCreatingRoom } from "./CreateRoom.svelte";
 
     let name = "";
     let description = "";
-    let region = ALLOWED_REGION[0];
+    let region;
+
+    let isLoading = false;
 
     function handleSubmit() {
 
@@ -35,6 +38,7 @@ import InputWithAnimatedPlaceHolder from "$src/components/_common/InputWithAnima
     function handleClose() {
         isCreatingRoom.set(false)
     }
+
 </script>
 
 <form 
@@ -45,12 +49,47 @@ import InputWithAnimatedPlaceHolder from "$src/components/_common/InputWithAnima
     
     <InputWithAnimatedPlaceHolder bind:value={name} placeholder="Name"/>
 
-    <InputWithAnimatedPlaceHolder bind:value={description} placeholder="description"/>
+    <InputWithAnimatedPlaceHolder bind:value={description} placeholder="Description (optional)"/>
 
-    <InputWithAnimatedPlaceHolder bind:value={description} placeholder="region"/>
 
-    <button>
-        send
-    </button>
+    <ChooseRegion bind:region={region}/>
+
+
+
+    <span class=Submit>
+        <RippleButton type=submit classes={(name==="" || description==="" || isLoading) ? "btn-disabled" : "btn-primary"}>
+            {#if isLoading}
+                <LoadingIcon />
+            {:else}
+                Send
+            {/if}
+        </RippleButton>
+    </span>
     <CloseButton on:click={handleClose}/>
 </form>
+
+<style>
+    h1 {
+        font-size: 20px;
+    }
+
+    form {
+        width: 100%;
+        max-width: 400px;;
+    }
+
+    .Submit {
+        display: flex;
+        height: 45px;
+    }
+
+    .Submit :global(button){
+        width: 100%;
+
+    }
+    
+    .Submit :global(svg){
+        width: 30px;
+        height: 30px;
+    }
+</style>
