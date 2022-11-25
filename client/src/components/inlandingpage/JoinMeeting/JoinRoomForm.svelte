@@ -67,7 +67,8 @@
   <style>
   
       form {
-        width: 450px;
+        width: 100%;
+        max-width: 450px;
         padding: 20px;
 
         display: grid;
@@ -101,5 +102,26 @@
       .Submit :global(svg) {
         width: 40px;
         height: 40px;
+
+      }
+
+      @media (max-width:350px) {
+        form {
+            width: 100%;
+            max-width: 450px;
+            padding: 20px;
+
+            display: grid;
+            grid-template-areas: 
+            'name'
+            'token'
+            'submit'
+            ;
+            gap: 10px;
+        }
+        .Submit :global(button){
+            width: 100%;
+            height: 40px;
+        }
       }
   </style>

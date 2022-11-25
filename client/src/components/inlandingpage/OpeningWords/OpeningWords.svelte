@@ -22,4 +22,11 @@
     p {
         font-size: 20px;
     }
+
+    @media (max-width:350px) {
+        h1 {
+            font-size: 30px;
+            margin-bottom: 20px
+        }
+    }
 </style>

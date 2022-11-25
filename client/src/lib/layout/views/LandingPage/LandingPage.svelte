@@ -67,8 +67,5 @@ import FeatureIntro from "./FeatureIntro.svelte";
             width: 100%;
             
         }
-        div {
-            height: 60vh;
-        }
     }
 </style>

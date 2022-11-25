@@ -33,9 +33,10 @@ import JoinRoomForm from "$src/components/inlandingpage/JoinMeeting/JoinRoomForm
         max-width: 400px;
     }
 
-    /* .JoinRoomForm {
+    .JoinRoomForm {
         width: 100%;
-        background-color: yellow;
-    } */
+        display: flex;
+        justify-content: center;
+    }
 
 </style>
