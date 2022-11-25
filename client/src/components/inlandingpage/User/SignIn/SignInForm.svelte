@@ -1,7 +1,9 @@
 <script context=module>
     import { message } from "$src/stores/Messages";
-
-    const AUTH_URL = 'http://127.0.0.1:8000/auth/'
+    import { URL_ORIGN } from "$src/apis/urls";
+    import { userNameF, userToken } from "../User.svelte";
+    
+    const AUTH_URL =  URL_ORIGN + '/auth/'
 
     function postLogIn(username, password) {
         return fetch(AUTH_URL + "login/", {
@@ -42,6 +44,7 @@
 
             const reader = await res.json();
             userToken.set(reader.access);
+            userNameF.set(username);
         }
 
         return failed; 
@@ -60,6 +63,7 @@
             message.set({type: "good", message: "Welcome back, " + username + "." });
             const reader = await res.json();
             userToken.set(reader.access);
+            userNameF.set(username);
         }
         
         return failed;
@@ -76,7 +80,7 @@
 
 
     import { isSignningIn } from "./SignIn.svelte";
-    import { userToken } from "../User.svelte";
+
 
 
     let username = "";

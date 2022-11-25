@@ -3,7 +3,7 @@
     import { get } from "svelte/store";
     import { userToken } from "../User/User.svelte";
 
-    const ROOM_URL = 'http://127.0.0.1:8000/rooms/api'
+    const ROOM_URL = URL_ORIGN + '/rooms/api'
     
     //CRUDs
     function postCreateRoom(name, description, region, access_token) {
@@ -50,6 +50,7 @@
     import { isCreatingRoom } from "./CreateRoom.svelte";
     import { handleJoin } from "../JoinMeeting/JoinRoomForm.svelte";
     import { tokenStore } from "$src/stores/MeetingRoom";
+    import { URL_ORIGN } from "$src/apis/urls";
 
     let name = "";
     let description = "";

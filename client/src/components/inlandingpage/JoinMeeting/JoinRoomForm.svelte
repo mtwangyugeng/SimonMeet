@@ -30,7 +30,9 @@
     let name = localStorage.getItem(USER_KEY) || '';
     let token = '';
 
-    const unsub = tokenStore.subscribe(v => token = v || localStorage.getItem(TOKEN_KEY))
+    const unsub = tokenStore.subscribe(v => {
+        token = v || (localStorage.getItem(TOKEN_KEY) !== null ? localStorage.getItem(TOKEN_KEY) : "")
+    })
     
 
     let isLoading = false;

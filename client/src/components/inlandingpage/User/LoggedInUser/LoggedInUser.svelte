@@ -1,13 +1,14 @@
 <script>
     import InitialAvatar from "$src/components/_common/InitialAvatar.svelte";
-    import { userName } from "../User.svelte";
+    import { userNameF } from "../User.svelte";
     import Logout from "./Logout/Logout.svelte";
 
 </script>
 
 <section>
-    <div class=InitialAvatar title={$userName}>
-        <InitialAvatar name={$userName}/>
+    <div class=InitialAvatar title={$userNameF}>
+        <InitialAvatar name={$userNameF+""}/>
+        
     </div>
     <Logout />
 </section>
