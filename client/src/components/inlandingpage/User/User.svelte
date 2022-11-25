@@ -4,6 +4,7 @@
     import SignIn from "./SignIn/SignIn.svelte";
 
     export const userToken = writable("");
+    export const userName = writable("");
 </script>
 
 <section>
