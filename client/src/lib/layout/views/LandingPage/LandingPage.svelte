@@ -62,10 +62,19 @@ import FeatureIntro from "./FeatureIntro.svelte";
             
         }
 
+        .Content {
+            flex-direction: column;
+        }
+
         .ToDo {
-            background-color: pink;
+            background-color: white;;
             width: 100%;
-            
+            padding: 50px 20px;;
+        }
+
+        .FeatureIntro {
+            width: 100%;
+            height: 500px;
         }
     }
 </style>

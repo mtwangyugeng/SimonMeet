@@ -9,10 +9,16 @@ import JoinRoomForm from "$src/components/inlandingpage/JoinMeeting/JoinRoomForm
     <div class=OpeningWords>
         <OpeningWords />
     </div>
-    <div class=JoinRoomForm>
-        <JoinRoomForm />
+    <div class=JoinCreate>
+        <div class=JoinRoomForm>
+            <JoinRoomForm />
+        </div>
+        <div class=CreateRoom>
+            <CreateRoom />
+        </div>
     </div>
-    <CreateRoom />
+   
+    
 </section>
 
 
@@ -30,13 +36,34 @@ import JoinRoomForm from "$src/components/inlandingpage/JoinMeeting/JoinRoomForm
     }
 
     .OpeningWords {
-        max-width: 400px;
+        max-width: 500px;
+    }
+
+    .JoinCreate {
+        max-width: 500px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
     }
 
     .JoinRoomForm {
-        width: 100%;
-        display: flex;
-        justify-content: center;
+        flex: 1;
     }
 
+    @media (max-width:500px) {
+        .JoinCreate {
+            flex-direction: column-reverse;
+            gap: 10px;
+        }
+        .JoinRoomForm {
+            width: 100%;
+        }
+
+        .CreateRoom {
+            align-self: flex-start;
+            padding: 0 10px;
+        }
+    }
 </style>

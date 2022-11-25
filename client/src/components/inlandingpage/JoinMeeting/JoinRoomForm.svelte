@@ -68,7 +68,7 @@
   
       form {
         width: 100%;
-        max-width: 450px;
+        /* max-width: 450px; */
         padding: 20px;
 
         display: grid;
@@ -108,7 +108,7 @@
       @media (max-width:350px) {
         form {
             width: 100%;
-            max-width: 450px;
+            /* max-width: 450px; */
             padding: 20px;
 
             display: grid;

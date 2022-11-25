@@ -8,6 +8,7 @@
     import { userToken } from '../User/User.svelte';
     import { isSignningIn } from '../User/SignIn/SignIn.svelte';
     import { message } from '$src/stores/Messages';
+    import AddMeetingIcon from '$src/components/_common/icons/AddMeetingIcon.svelte';
 
     function handleClick() {
         isCreatingRoom.set(true);
@@ -18,7 +19,20 @@
     }
 </script>
 
+<span>
+    <RippleButton classes="btn-lite" on:click={handleClick}>
+        <AddMeetingIcon /> New Meeting
+    </RippleButton>
+</span>
 
-<RippleButton on:click={handleClick}>
-    New Meeting
-</RippleButton>
+<style>
+    span :global(svg) {
+        height: 30px;
+        width: 30px;
+    }
+
+    span :global(button) {
+        display: flex;
+        gap: 10px;
+    }
+</style>
