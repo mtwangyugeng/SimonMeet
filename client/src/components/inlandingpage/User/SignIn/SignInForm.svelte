@@ -40,11 +40,10 @@
             failed = true
         }
         else {
-            message.set({type: "good", message: "Welcome, " + username + "." });
-
             const reader = await res.json();
-            userToken.set(reader.access);
-            userNameF.set(username);
+            console.error("READER", reader)
+            // userToken.set(reader.access);
+            // userNameF.set(username);
         }
 
         return failed; 
@@ -60,7 +59,7 @@
             failed = true
         }
         else {
-            message.set({type: "good", message: "Welcome back, " + username + "." });
+            
             const reader = await res.json();
             userToken.set(reader.access);
             userNameF.set(username);
@@ -107,6 +106,7 @@
         try{
         if (isCreatingAccount) {
             failed = await handleCreateAccount(username, password, confirmPassword)
+            failed = await handleLogIn(username, password)
         } else {
             failed = await handleLogIn(username, password)
         }
@@ -115,6 +115,12 @@
         }
 
         if (failed === false) {
+            if(isCreatingAccount) {
+                message.set({type: "good", message: "Welcome, " + username + "." });
+            } else {
+                message.set({type: "good", message: "Welcome back, " + username + "." });
+            }
+
             handleClose()
         }
 
